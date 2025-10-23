@@ -1,2 +1,5 @@
-@import url('http://meyerweb.com/eric/tools/css/reset/reset.css'); /* CSS Reset para compatibilidad entre navegadores */
-@import url('style.css'); /* Estilos principales */
+/* The barrel index file */
+/*@import url("https://meyerweb.com/eric/tools/css/reset/reset.css");*/
+@import url("reset.css");
+@import url("types.css");
+@import url("site.css");
