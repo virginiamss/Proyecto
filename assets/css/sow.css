@@ -4,7 +4,7 @@ header {
   top: 0;
   width: 100%;
   background: #000;
-  color: #fff;
+  color: #f9d7e7;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
@@ -43,16 +43,25 @@ nav ul li a:focus {
 
 /* Cover */
 .cover {
-  background: #000;
-  color: #fff;
-  min-height: 110vh;
-  min-width: 100%;
+  background: linear-gradient(135deg, #ff2d69, #000000);
+  color: #000000;
+  min-height: 110vh; /* Asegúrate de que ocupe toda la altura de la ventana */
+  width: 100%;
   display: flex;
-  background: linear-gradient(135deg, #007acc, #001f3f);
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Centra el título */
   align-items: center;
-  border-radius: 0; /* Asegúrate de que no haya border-radius */
+  position: relative;
+  overflow: hidden; /* Para evitar desbordamientos */
+}
+
+/* Scroll down dentro del cover */
+.scroll-down {
+  position: absolute;
+  bottom: 4rem; /* 👈 al ras inferior del cover */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .title {
   overflow: hidden;
@@ -76,11 +85,19 @@ nav ul li a:focus {
 }
 
 .title {
-  font-size: 2.5rem;
+  overflow: hidden;
+  color: #ffffff; /* 👈 blanco puro */
+  border-right: 0.15em solid #ffffff; /* 👈 el cursor también blanco */
+  white-space: nowrap;
+  border-right: 0.15em solid currentColor;
+  animation: typing 2s steps(30, end) forwards,
+    blink-caret 0.55s step-end infinite;
+  font-size: 4.5rem;
   font-weight: bold;
-  margin-top: 3rem;
-  margin-bottom: 2rem;
+  margin-top: 25rem;
+  margin-bottom: 3rem;
   text-align: center;
+  overflow: hidden;
 }
 
 /* Scroll Down Animation */
@@ -88,16 +105,16 @@ nav ul li a:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 #text {
   color: #fff;
-  font-size: 1.5rem;
-  font-family: cambria, monospace;
+  font-size: 1.2rem;
+  font-family: Cambria, monospace;
   letter-spacing: 0.2em;
   text-shadow: 0 0 8px #b9f;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* 👈 más espacio entre texto y flechas */
   text-align: center;
 }
 
@@ -109,48 +126,71 @@ nav ul li a:focus {
 }
 
 #scroll-down svg {
-  width: 32px;
-  height: 16px;
-  margin: 0.2rem 0;
-  display: block;
-  stroke: #f9d7e7;
-  animation: scroll-down 2s infinite cubic-bezier(0.8, 0, 0.2, 1);
+  width: 48px;
+  height: 24px;
+  margin: 0.8rem 0;
+  stroke: #ede6e6;
+  stroke-width: 2;
+  fill: none;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px #f9d7e7) drop-shadow(0 0 12px #ff66b2)
+    drop-shadow(0 0 20px #ff3385);
+
+  filter: drop-shadow(0 0 8px rgba(237, 150, 202, 0.6));
+  animation: arrowFlow 2.4s ease-in-out infinite;
 }
 
 #scroll-down svg:nth-child(1) {
+  stroke: #e84f97 !important;
   animation-delay: 0s;
 }
 #scroll-down svg:nth-child(2) {
-  animation-delay: 0.5s;
+  stroke: #e670a7 !important;
+
+  animation-delay: 0.4s;
 }
 #scroll-down svg:nth-child(3) {
-  animation-delay: 1s;
+  stroke: #e495ba !important;
+  animation-delay: 0.8s;
 }
 #scroll-down svg:nth-child(4) {
-  animation-delay: 1.5s;
+  stroke: #e8b8ce !important;
+  animation-delay: 1.2s;
+}
+#scroll-down svg:nth-child(5) {
+  stroke: #fff !important;
+  animation-delay: 1.6s;
 }
 
-@keyframes scroll-down {
+@keyframes arrowFlow {
   0% {
     opacity: 0;
     transform: translateY(0);
   }
+  20% {
+    opacity: 1;
+    transform: translateY(4px);
+  }
   50% {
     opacity: 1;
-    transform: translateY(10px);
+    transform: translateY(8px);
+  }
+  80% {
+    opacity: 0;
+    transform: translateY(12px);
   }
   100% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(14px);
   }
 }
 
 /* Secciones */
 section {
   padding: 3rem 2rem;
-  max-width: 900px;
+  max-width: none;
   margin: 0 auto;
-  background: #fff;
+  background: #313030;
   color: #222;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -168,11 +208,19 @@ footer {
   border-top: 1px solid #222;
 }
 html,
+html {
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(135deg, #ff2d69, #000000, #000000);
+  background-attachment: fixed;
+}
+
 body {
+  background: transparent; /* 👈 importante, para que se vea el fondo del html */
+  color: #fff;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  width: 100%;
 }
 
 /* Evita que los hijos de flex o grid se desborden */
